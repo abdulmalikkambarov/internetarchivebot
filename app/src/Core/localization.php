@@ -85,6 +85,7 @@ $locales = [
 	'to'      => [ 'mi_NZ.UTF-8', 'Maori.1252' ],
 	'tr'      => [ 'tr_TR.UTF-8', 'Turkish_Turkey.1254' ],
 	'uk'      => [ 'uk_UA.UTF-8', 'Ukrainian_Ukraine.1251' ],
+        'uz'      => [ 'uz_UZ.UTF-8', 'Uzbek_Uzbekistan.1252' ],
 	'vi'      => [ 'vi_VN.UTF-8', 'Vietnamese_Viet Nam.1258' ],
 	'yue'     => [ 'zh_CN.UTF-8', 'zh_CN.gb2312', 'Chinese_China.936' ],
 	'zh-hans' => [ 'zh_CN.UTF-8', 'zh_CN.gb2312', 'Chinese_China.936' ],
@@ -435,4 +436,31 @@ class IABotLocalization {
 
 		return $timestamp;
 	}
+public static function localize_uz( $timestamp, $toEN = false ) {
+        $locales = [
+            'January'   => "yanvar",
+            'February'  => "fevral",
+            'March'     => "mart",
+            'April'     => "aprel",
+            'May'       => "may",
+            'June'      => "iyun",
+            'July'      => "iyul",
+            'August'    => "avgust",
+            'September' => "sentabr",
+            'October'   => "oktabr",
+            'November'  => "noyabr",
+            'December'  => "dekabr"
+        ];
+
+        if( $toEN === true ) {
+            $locales = array_flip( $locales );
+        }
+
+        foreach( $locales as $search => $replace ) {
+            $timestamp = str_ireplace( $search, $replace, $timestamp );
+        }
+
+        return $timestamp;
+    }
+
 }
